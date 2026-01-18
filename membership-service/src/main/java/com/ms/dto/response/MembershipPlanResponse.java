@@ -1,10 +1,10 @@
-package com.cs.dto.response;
+package com.ms.dto.response;
 
 import java.time.LocalDateTime;
 
-import com.cs.enums.Goal;
-import com.cs.enums.MembershipLevel;
-import com.cs.enums.MembershipPlanStatus;
+import com.ms.enums.Goal;
+import com.ms.enums.MembershipLevel;
+import com.ms.enums.MembershipPlanStatus;
 
 public class MembershipPlanResponse {
 
