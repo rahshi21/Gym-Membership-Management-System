@@ -1,9 +1,12 @@
 package com.gm.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.gm.dto.request.CreateTrainerRequest;
 import com.gm.dto.response.TrainerResponse;
 import com.gm.entity.Trainer;
 
+@Component
 public class TrainerMapper {
 
     public Trainer toEntity(CreateTrainerRequest request) {

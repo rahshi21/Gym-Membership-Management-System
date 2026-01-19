@@ -24,10 +24,13 @@ public class EquipmentService {
 
     @Autowired
     private EquipmentRepository equipmentRepository;
+    
+    @Autowired
+    private EquipmentMapper mapper;
 
     public ResponseEntity<?> createEquipment(CreateEquipmentRequest request) {
 
-        Equipment equipment = EquipmentMapper.toEquipment(request);
+        Equipment equipment = mapper.toEquipment(request);
         equipmentRepository.save(equipment);
 
         logger.info("Equipment created successfully");

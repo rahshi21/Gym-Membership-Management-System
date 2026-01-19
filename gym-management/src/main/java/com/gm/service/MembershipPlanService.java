@@ -1,5 +1,6 @@
 package com.gm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import com.gm.dto.request.CreateMembershipPlanRequest;
 import com.gm.dto.request.UpdateMembershipPlanRequest;
 import com.gm.dto.response.MembershipPlanResponse;
 import com.gm.entity.MembershipPlan;
+import com.gm.enums.MembershipPlanStatus;
 import com.gm.exception.MembershipPlanNotFoundException;
 import com.gm.mapper.MembershipPlanMapper;
 import com.gm.repository.MembershipPlanRepository;
@@ -42,7 +44,6 @@ public class MembershipPlanService {
 		plan.setDurationOfMembershipPlan(request.getDurationOfMembershipPlan());
 		plan.setPrice(request.getPrice());
 		plan.setActive(request.getActive());
-		
 
 		MembershipPlan saved = memberRepo.save(plan);
 		logger.info(saved.toString());
@@ -59,7 +60,23 @@ public class MembershipPlanService {
 	}
 
 	public List<MembershipPlanResponse> getAllMemberships() {
-		return memberRepo.findAll().stream().map(mapper::toResponse).collect(Collectors.toList());
+		return memberRepo
+				.findAll()
+				.stream()
+				.map(mapper::toResponse)
+				.collect(Collectors.toList());
+	}
+
+	public List<MembershipPlanResponse> getActiveMemberships() {
+
+		List<MembershipPlan> activePlans = memberRepo.findByStatus(MembershipPlanStatus.ACTIVE);
+		List<MembershipPlanResponse> responseList = new ArrayList<>();
+
+		for (MembershipPlan membership : activePlans) {
+			responseList.add(mapper.toResponse(membership));
+		}
+
+		return responseList;
 	}
 
 }

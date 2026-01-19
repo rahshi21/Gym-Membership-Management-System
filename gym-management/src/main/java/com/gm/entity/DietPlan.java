@@ -48,4 +48,87 @@ public class DietPlan {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+	public DietPlan() {
+//		super();
+	}
+
+	public DietPlan(Long id, Member member, Trainer trainer, String descriptionOfDiet, String preferencesInDiet,
+			DietPlanStatus statusOfDiet, LocalDateTime createdAt, LocalDateTime updatedAt) {
+		super();
+		this.id = id;
+		this.member = member;
+		this.trainer = trainer;
+		this.descriptionOfDiet = descriptionOfDiet;
+		this.preferencesInDiet = preferencesInDiet;
+		this.statusOfDiet = statusOfDiet;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Trainer getTrainer() {
+		return trainer;
+	}
+
+	public void setTrainer(Trainer trainer) {
+		this.trainer = trainer;
+	}
+
+	public String getDescriptionOfDiet() {
+		return descriptionOfDiet;
+	}
+
+	public void setDescriptionOfDiet(String descriptionOfDiet) {
+		this.descriptionOfDiet = descriptionOfDiet;
+	}
+
+	public String getPreferencesInDiet() {
+		return preferencesInDiet;
+	}
+
+	public void setPreferencesInDiet(String preferencesInDiet) {
+		this.preferencesInDiet = preferencesInDiet;
+	}
+
+	public DietPlanStatus getStatusOfDiet() {
+		return statusOfDiet;
+	}
+
+	public void setStatusOfDiet(DietPlanStatus statusOfDiet) {
+		this.statusOfDiet = statusOfDiet;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	
+	}
+    
 }
