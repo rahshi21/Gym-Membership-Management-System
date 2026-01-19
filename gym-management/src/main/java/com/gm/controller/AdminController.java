@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gm.dto.request.AddEquipmentStockRequest;
 import com.gm.dto.request.CreateEquipmentRequest;
 import com.gm.dto.request.CreateMembershipPlanRequest;
+import com.gm.dto.request.CreateTrainerRequest;
 import com.gm.dto.request.UpdateEquipmentStatusRequest;
 import com.gm.dto.request.UpdateMembershipPlanRequest;
+import com.gm.dto.request.UpdateTrainerRequest;
 import com.gm.dto.response.MemberResponse;
 import com.gm.dto.response.MembershipPlanResponse;
+import com.gm.dto.response.TrainerResponse;
 import com.gm.service.EquipmentService;
 import com.gm.service.MemberService;
 import com.gm.service.MembershipPlanService;
+import com.gm.service.TrainerService;
 
 import jakarta.validation.Valid;
 
@@ -43,7 +47,7 @@ public class AdminController {
 
 	//MEMBERSHIP
 
-	@PostMapping("/membership")
+	@PostMapping("/membership/add")
 	public MembershipPlanResponse addMembership(@Valid @RequestBody CreateMembershipPlanRequest request) {
 		return membershipPlanService.addMembership(request);
 	}
@@ -85,27 +89,32 @@ public class AdminController {
 		return equipmentService.getAllEquipment();
 	}
 
-	// ---------- CUSTOMERS ----------
+	//CUSTOMERS
 
 	@GetMapping("/members")
 	public List<MemberResponse> getAllMembers() {
 		return memberService.getAllMembers();
 	}
 
-	// ---------- TRAINERS ----------
+	//TRAINERS
 
-	@PostMapping("/trainers")
-	public ResponseEntity<?> addTrainer(@Valid @RequestBody AddTrainerRequest request) {
-		return trainerService.AddTrainerRequest(request);
+	@PostMapping("/trainers/add")
+	public TrainerResponse addTrainer(@Valid @RequestBody CreateTrainerRequest request) {
+		return trainerService.addTrainer(request);
 	}
 
 	@PutMapping("/trainers")
-	public ResponseEntity<?> updateTrainer(@Valid @RequestBody UpdateTrainerRequest request) {
+	public TrainerResponse updateTrainer(@Valid @RequestBody UpdateTrainerRequest request) {
 		return trainerService.updateTrainer(request);
 	}
 	
+	@GetMapping("/trainers/{id}")
+	public TrainerResponse getTrainerById(@PathVariable Long id) {
+		return trainerService.getTrainerById(id);
+	}
+	
 	@GetMapping("/trainers")
-	public ResponseEntity<?> getAllTrainers() {
+	public List<TrainerResponse> getAllTrainers() {
 		return trainerService.getAllTrainers();
 	}
 }

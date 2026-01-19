@@ -1,60 +1,28 @@
-package com.gm.entity;
+package com.gm.dto.response;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.gm.enums.Goal;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+public class TrainerResponse {
 
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Trainer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private Integer experience;
-    
-    @Enumerated(EnumType.STRING)
-    private Goal expertise;
-    
-    private String availability;
-
-	@CreatedDate
-	@Column(updatable = false)
+	private String lastName;
+	private String email;
+	private String phone;
+	private Integer experience;
+	private Goal expertise;
+	private String availability;
 	private LocalDateTime createdAt;
-
-	@LastModifiedDate
 	private LocalDateTime updatedAt;
-	
-	@OneToMany
-	private List<Member> assignedMembers;
 
-	public Trainer() {
-//		super();
+	public TrainerResponse() {
+		super();
 	}
 
-	public Trainer(Long id, String firstName, String lastName, String email, String phone, Integer experience,
-			Goal expertise, String availability, LocalDateTime createdAt, LocalDateTime updatedAt,
-			List<Member> assignedMembers) {
+	public TrainerResponse(Long id, String firstName, String lastName, String email, String phone,
+			Integer experience, Goal expertise, String availability, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -66,7 +34,6 @@ public class Trainer {
 		this.availability = availability;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.assignedMembers = assignedMembers;
 	}
 
 	public Long getId() {
@@ -147,14 +114,6 @@ public class Trainer {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public List<Member> getAssignedMembers() {
-		return assignedMembers;
-	}
-
-	public void setAssignedMembers(List<Member> assignedMembers) {
-		this.assignedMembers = assignedMembers;
 	}
 
 }
