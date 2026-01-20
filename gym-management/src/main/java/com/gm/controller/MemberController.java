@@ -106,39 +106,39 @@ public class MemberController {
 	public List<EquipmentBookingResponse> getMyBookings(@PathVariable Long id) {
 		return bookingService.getBookingsByMember(id);
 	}
-	
+
 	@DeleteMapping("/equipment-booking")
-	public String cancelBooking(
-	        @RequestBody CancelEquipmentBookingRequest request) {
+	public String cancelBooking(@RequestBody CancelEquipmentBookingRequest request) {
 
-	    bookingService.cancelBooking(request);
-	    return "Equipment booking cancelled successfully";
+		bookingService.cancelBooking(request);
+		return "Equipment booking cancelled successfully";
 	}
-
 
 	// PAYMENT
 
-	@PostMapping("/payment/{planId}")
-	public ResponseEntity<PaymentResponse> purchaseMembership(@PathVariable Long planId,
-			@RequestBody PurchaseMembershipRequest req) {
+	@PostMapping("/payment")
+	public PaymentResponse makePayment(@RequestBody PurchaseMembershipRequest request) {
 
-		PaymentResponse response = paymentService.purchaseMembership(planId, req.getMemberId());
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return paymentService.makePayment(request);
+	}
 
+	@GetMapping("/payments/{memberId}")
+	public List<PaymentResponse> getMyPayments(@PathVariable Long id) {
+
+		return paymentService.getPaymentsByCustomer(id);
 	}
 
 	// RATING
-	
+
 	@PostMapping("/rating")
 	public RatingResponse addRating(@Valid @RequestBody CreateRatingRequest request) {
-	    return ratingService.addRating(request);
+		return ratingService.addRating(request);
 	}
 
 	@GetMapping("/ratings/{memberId}")
 	public List<RatingResponse> getMyRatings(@PathVariable Long id) {
-	    return ratingService.getRatingsByMember(id);
+		return ratingService.getRatingsByMember(id);
 	}
-
 
 	// DIET PLAN
 

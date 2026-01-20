@@ -61,7 +61,7 @@ import com.gm.repository.PaymentRepository;
 //}
 
 @Service
-public class PaymentServiceImpl implements PaymentService {
+public class PaymentService {
 
     @Autowired
     private PaymentRepository paymentRepository;
@@ -83,7 +83,7 @@ public class PaymentServiceImpl implements PaymentService {
         MembershipPlan membership = membershipRepository.findById(request.getMemberId())
                 .orElseThrow(() -> new MembershipPlanNotFoundException("Membership not found"));
 
-        Payment payment = PaymentMapper.toEntity(
+        Payment payment = mapper.toEntity(
                 member,
                 membership,
                 request.getAmount()
@@ -91,17 +91,16 @@ public class PaymentServiceImpl implements PaymentService {
 
         Payment saved = paymentRepository.save(payment);
 
-        return PaymentMapper.toResponse(saved);
+        return mapper.toResponse(saved);
     }
 
-    @Override
     public List<PaymentResponse> getPaymentsByCustomer(Long customerId) {
 
         List<Payment> payments = paymentRepository.findByCustomerId(customerId);
         List<PaymentResponse> responses = new ArrayList<>();
 
         for (Payment payment : payments) {
-            responses.add(PaymentMapper.toResponse(payment));
+            responses.add(mapper.toResponse(payment));
         }
 
         return responses;
