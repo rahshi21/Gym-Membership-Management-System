@@ -1,18 +1,15 @@
 package com.gm.dto.request;
 
-import com.gm.entity.Member;
-import com.gm.entity.Trainer;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateDietPlanRequest {
 	
 	@NotNull(message = "Member Id is mandatory")
-	private Member member;
+	private Long memberId;
 
 	@NotNull(message = "Trainer Id is mandatory")
-    private Trainer trainer;
+    private Long trainerId;
 
 	@NotBlank(message = "Description of Diet is mandatory")
     private String descriptionOfDiet;
@@ -24,28 +21,28 @@ public class CreateDietPlanRequest {
 		super();
 	}
 
-	public CreateDietPlanRequest(Member member, Trainer trainer, String descriptionOfDiet, String preferencesInDiet) {
+	public CreateDietPlanRequest(Long memberId, Long trainerId, String descriptionOfDiet, String preferencesInDiet) {
 		super();
-		this.member = member;
-		this.trainer = trainer;
+		this.memberId = memberId;
+		this.trainerId = trainerId;
 		this.descriptionOfDiet = descriptionOfDiet;
 		this.preferencesInDiet = preferencesInDiet;
 	}
 
-	public Member getMember() {
-		return member;
+	public Long getMemberId() {
+		return memberId;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
 	}
 
-	public Trainer getTrainer() {
-		return trainer;
+	public Long getTrainerId() {
+		return trainerId;
 	}
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
+	public void setTrainerId(Long trainerId) {
+		this.trainerId = trainerId;
 	}
 
 	public String getDescriptionOfDiet() {
@@ -63,7 +60,7 @@ public class CreateDietPlanRequest {
 	public void setPreferencesInDiet(String preferencesInDiet) {
 		this.preferencesInDiet = preferencesInDiet;
 	}
-	
+
 	
 
 }

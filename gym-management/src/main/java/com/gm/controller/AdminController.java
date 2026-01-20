@@ -1,6 +1,5 @@
 package com.gm.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gm.config.CurrentUserUtil;
@@ -116,7 +114,7 @@ public class AdminController {
 
 	// TRAINERS
 
-	@PostMapping("/trainers/add")
+	@PostMapping("/add-trainers")
 	public TrainerResponse addTrainer(@Valid @RequestBody CreateTrainerRequest request) {
 		return trainerService.addTrainer(request);
 	}
@@ -138,7 +136,7 @@ public class AdminController {
 
 	// BOOKINGS
 
-	@GetMapping("/equipment-bookings/equipment/{equipmentId}")
+	@GetMapping("/equipment-bookings/{equipmentId}")
 	public List<EquipmentBookingResponse> getBookingsByEquipment(@PathVariable Long equipmentId) {
 
 		return bookingService.getBookingsByEquipment(equipmentId);
@@ -149,17 +147,17 @@ public class AdminController {
 		return bookingService.getAllBookings();
 	}
 
-	@GetMapping("/equipment-bookings/customer/{customerId}")
+	@GetMapping("/equipment-bookings/member/{id}")
 	public List<EquipmentBookingResponse> getBookingsByMember(@PathVariable Long id) {
 
 		return bookingService.getBookingsByMember(id);
 	}
 
-	@GetMapping("/equipment-bookings/date")
-	public List<EquipmentBookingResponse> getBookingsByDateRange(@RequestParam LocalDateTime startDate,
-			@RequestParam LocalDateTime endDate) {
-
-		return bookingService.getBookingsByDateRange(startDate, endDate);
-	}
+//	@GetMapping("/equipment-bookings/date")
+//	public List<EquipmentBookingResponse> getBookingsByDateRange(@RequestParam LocalDateTime startDate,
+//			@RequestParam LocalDateTime endDate) {
+//
+//		return bookingService.getBookingsByDateRange(startDate, endDate);
+//	}
 
 }

@@ -1,5 +1,6 @@
 package com.gm.dto.response;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class EquipmentBookingResponse {
@@ -8,7 +9,7 @@ public class EquipmentBookingResponse {
 	private Long memberId;
 	private Long equipmentId;
 	private String equipmentName;
-	private LocalDateTime bookingDate;
+	private LocalDate bookingDate;
 	private String timeslot;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
@@ -18,7 +19,7 @@ public class EquipmentBookingResponse {
 	}
 
 	public EquipmentBookingResponse(Long bookingId, Long memberId, Long equipmentId, String equipmentName,
-			LocalDateTime bookingDate, String timeslot, LocalDateTime createdAt, LocalDateTime updatedAt) {
+			LocalDate bookingDate, String timeslot, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.bookingId = bookingId;
 		this.memberId = memberId;
@@ -62,11 +63,11 @@ public class EquipmentBookingResponse {
 		this.equipmentName = equipmentName;
 	}
 
-	public LocalDateTime getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDateTime bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

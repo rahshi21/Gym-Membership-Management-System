@@ -1,7 +1,8 @@
 package com.gm.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,8 +14,9 @@ public class CreateEquipmentBookingRequest {
 	@NotNull(message = "Equipment Id is mandatory")
 	private Long equipmentId;
 
-	@NotBlank(message = "booking date in Diet is mandatory")
-	private LocalDateTime bookingDate;
+//	@NotBlank(message = "booking date is mandatory")
+	@Future
+	private LocalDate bookingDate;
 
 	@NotBlank(message = "time slot is mandatory")
 	private String timeslot;
@@ -23,7 +25,7 @@ public class CreateEquipmentBookingRequest {
 		super();
 	}
 
-	public CreateEquipmentBookingRequest(Long memberId, Long equipmentId, LocalDateTime bookingDate, String timeslot) {
+	public CreateEquipmentBookingRequest(Long memberId, Long equipmentId, LocalDate bookingDate, String timeslot) {
 		super();
 		this.memberId = memberId;
 		this.equipmentId = equipmentId;
@@ -47,11 +49,11 @@ public class CreateEquipmentBookingRequest {
 		this.equipmentId = equipmentId;
 	}
 
-	public LocalDateTime getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDateTime bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

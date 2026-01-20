@@ -1,10 +1,10 @@
 package com.gm.dto.request;
 
-import com.gm.enums.MembershipPlanStatus;
-
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class UpdateMembershipPlanRequest {
 	
@@ -18,20 +18,21 @@ public class UpdateMembershipPlanRequest {
     @NotNull(message = "Price is mandatory")
 	@Positive(message = "price must be greater than zero")
     private Double price;
-
-    @NotNull(message = "Membership Plan Status is required")
-    private MembershipPlanStatus active;
+    
+    @NotBlank(message = "Description is required")
+    @Size(min = 10, max = 100, message = "Description must be between 10 to 20 characters")
+    private String description;
 
 	public UpdateMembershipPlanRequest() {
 		super();
 	}
 
-	public UpdateMembershipPlanRequest(Long id, Integer durationOfMembershipPlan, Double price, MembershipPlanStatus active) {
+	public UpdateMembershipPlanRequest(Long id, Integer durationOfMembershipPlan, Double price, String description) {
 		super();
 		this.id = id;
 		this.durationOfMembershipPlan = durationOfMembershipPlan;
 		this.price = price;
-		this.active = active;
+		this.description = description;
 	}
 
 	public Long getId() {
@@ -58,12 +59,12 @@ public class UpdateMembershipPlanRequest {
 		this.price = price;
 	}
 
-	public MembershipPlanStatus getActive() {
-		return active;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setActive(MembershipPlanStatus active) {
-		this.active = active;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
+	
 }

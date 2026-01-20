@@ -1,5 +1,7 @@
 package com.gm.mapper;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Component;
 
 import com.gm.dto.request.CreateTrainerRequest;
@@ -19,6 +21,8 @@ public class TrainerMapper {
         trainer.setExperience(request.getExperience());
         trainer.setExpertise(request.getExpertise());
         trainer.setAvailability(request.getAvailability());
+        trainer.setCreatedAt(LocalDateTime.now());
+        trainer.setUpdatedAt(LocalDateTime.now());
 
         return trainer;
     }
@@ -34,6 +38,8 @@ public class TrainerMapper {
         response.setExperience(trainer.getExperience());
         response.setExpertise(trainer.getExpertise());
         response.setAvailability(trainer.getAvailability());
+        response.setCreatedAt(trainer.getCreatedAt());
+        response.setUpdatedAt(trainer.getUpdatedAt());
 
         return response;
     }

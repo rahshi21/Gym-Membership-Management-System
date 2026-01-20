@@ -64,14 +64,17 @@ public class SecurityConfig {
 	    .authorizeHttpRequests(auth -> auth
 	            .requestMatchers("/signup","/login").permitAll()
 	            .requestMatchers("/api/admin/**").hasRole("ADMIN")
-	            .requestMatchers("/api/trainers/**").hasAnyRole("TRAINER","ADMIN")
-	            .requestMatchers("/api/members/**").hasAnyRole("MEMBER","ADMIN","TRAINER")
+	            .requestMatchers("/api/trainer/**").hasAnyRole("TRAINER","ADMIN")
+	            .requestMatchers("/api/member/**").hasAnyRole("MEMBER","ADMIN","TRAINER")
+//	            .requestMatchers("/api/**").hasAnyRole("MEMBER","ADMIN","TRAINER")
 	            .anyRequest().authenticated()
 	        )
 	        .addFilter(jwtAuthFilter)
 	        .addFilterBefore(new JwtAuthorizationFilter(jwtUtil, userDetailsService), 
 	        		UsernamePasswordAuthenticationFilter.class)
-	        .logout(logout -> logout.permitAll());
+	        .logout(logout -> logout
+	        		.logoutUrl("/logout")
+	        		.permitAll());
 	 
 	    return http.build();
 	}

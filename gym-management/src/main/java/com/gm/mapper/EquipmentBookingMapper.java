@@ -18,6 +18,7 @@ public class EquipmentBookingMapper {
         response.setEquipmentId(booking.getEquipment().getId());
         response.setEquipmentName(booking.getEquipment().getEquipmentName());
         response.setBookingDate(booking.getBookingDate());
+        response.setTimeslot(booking.getTimeslot());
         response.setCreatedAt(LocalDateTime.now());
         response.setUpdatedAt(LocalDateTime.now());
 

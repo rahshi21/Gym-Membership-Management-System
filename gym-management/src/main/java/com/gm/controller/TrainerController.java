@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gm.config.CurrentUserUtil;
 import com.gm.dto.request.CreateDietPlanRequest;
-import com.gm.dto.request.CreateTrainerRequest;
 import com.gm.dto.request.UpdateDietPlanRequest;
-import com.gm.dto.request.UpdateTrainerRequest;
 import com.gm.dto.response.DietPlanResponse;
 import com.gm.dto.response.RatingResponse;
-import com.gm.dto.response.TrainerResponse;
 import com.gm.entity.User;
 import com.gm.service.DietPlanService;
 import com.gm.service.RatingService;
@@ -49,28 +46,11 @@ public class TrainerController {
 		return "Welcome " + user.getUsername();
 	}
 
-    //PROFILE
-    
-    @PostMapping("/profile")
-	public TrainerResponse addTrainer(@Valid @RequestBody CreateTrainerRequest request) {
-		return trainerService.addTrainer(request);
-	}
-
-	@PutMapping("/profile")
-	public TrainerResponse updateTrainer(@Valid @RequestBody UpdateTrainerRequest request) {
-		return trainerService.updateTrainer(request);
-	}
-
-    @GetMapping("/profile/{id}")
-    public TrainerResponse getTrainerProfile(@PathVariable Long id) {
-        return trainerService.getTrainerById(id);
-    }
-
     //CUSTOMERS
 
-    @GetMapping("/customers/{trainerId}")
-    public ResponseEntity<?> getAssignedCustomers(@PathVariable Long trainerId) {
-        return trainerService.getAssignedCustomers(trainerId);
+    @GetMapping("/members/{id}")
+    public ResponseEntity<?> getAssignedCustomers(@PathVariable Long id) {
+        return trainerService.getAssignedCustomers(id);
     }
 
     //DIET PLAN

@@ -34,38 +34,38 @@ public class CustomExceptionHandler {
 	@ExceptionHandler(MemberNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(MemberNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	
 	@ExceptionHandler(MembershipPlanNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(MembershipPlanNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(EquipmentNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(EquipmentNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(BookingNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(BookingNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(DietPlanNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(DietPlanNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(TrainerNotFoundException.class)
 	public ResponseEntity<Object> handleProductNotFoundException(TrainerNotFoundException ex) {
 		
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 

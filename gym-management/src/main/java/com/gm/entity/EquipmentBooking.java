@@ -1,5 +1,6 @@
 package com.gm.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -32,7 +33,7 @@ public class EquipmentBooking {
 	@JoinColumn(name = "equipment_id", nullable = false)
 	private Equipment equipment;
 
-	private LocalDateTime bookingDate;
+	private LocalDate bookingDate;
 	private String timeslot;
 
 	@CreatedDate
@@ -46,7 +47,7 @@ public class EquipmentBooking {
 //		super();
 	}
 
-	public EquipmentBooking(Long id, Member member, Equipment equipment, LocalDateTime bookingDate, String timeslot,
+	public EquipmentBooking(Long id, Member member, Equipment equipment, LocalDate bookingDate, String timeslot,
 			LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
@@ -82,11 +83,11 @@ public class EquipmentBooking {
 		this.equipment = equipment;
 	}
 
-	public LocalDateTime getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDateTime bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -113,5 +114,7 @@ public class EquipmentBooking {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	
 
 }

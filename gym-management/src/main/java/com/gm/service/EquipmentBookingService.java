@@ -1,5 +1,6 @@
 package com.gm.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class EquipmentBookingService {
         EquipmentBooking booking = new EquipmentBooking();
         booking.setMember(member);
         booking.setEquipment(equipment);
-        booking.setBookingDate(LocalDateTime.now());
+        booking.setBookingDate(LocalDate.now());
         booking.setTimeslot(request.getTimeslot());
         booking.setCreatedAt(LocalDateTime.now());
 

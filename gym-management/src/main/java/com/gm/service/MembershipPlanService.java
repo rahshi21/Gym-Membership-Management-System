@@ -1,5 +1,6 @@
 package com.gm.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,18 +44,24 @@ public class MembershipPlanService {
 
 		plan.setDurationOfMembershipPlan(request.getDurationOfMembershipPlan());
 		plan.setPrice(request.getPrice());
-		plan.setActive(request.getActive());
+		plan.setDescription(request.getDescription());
+		
+		plan.setUpdatedAt(LocalDateTime.now());
 
 		MembershipPlan saved = memberRepo.save(plan);
 		logger.info(saved.toString());
 		MembershipPlanResponse response = mapper.toResponse(saved);
+		
+		logger.info("Membership Plan updated successfully");
 
 		return response;
 	}
 
 	public MembershipPlanResponse getMembershipById(Long id) {
 		logger.info("Get Membership Plan by id : " + id);
-		MembershipPlan member = memberRepo.findById(id).orElseThrow(() -> new RuntimeException("Plan not found"));
+		MembershipPlan member = memberRepo.findById(id).orElseThrow(
+				() -> new MembershipPlanNotFoundException("Plan id does not exist")
+				);
 		MembershipPlanResponse response = mapper.toResponse(member);
 		return response;
 	}

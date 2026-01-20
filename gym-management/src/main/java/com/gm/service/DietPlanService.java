@@ -41,29 +41,36 @@ public class DietPlanService {
 	@Autowired
 	private DietPlanMapper mapper;
 
-	// TRAINER → Create diet plan
 	public DietPlanResponse createDietPlan(CreateDietPlanRequest request) {
 
-		Member member = memberRepository.findById(request.getMember().getId())
+		Member member = memberRepository.findById(request.getMemberId())
 				.orElseThrow(() -> new MemberNotFoundException("Member not found"));
 
-		Trainer trainer = trainerRepository.findById(request.getTrainer().getId())
+		Trainer trainer = trainerRepository.findById(request.getTrainerId())
 				.orElseThrow(() -> new TrainerNotFoundException("Trainer not found"));
 
-		dietPlanRepository.findByMemberIdAndStatusOfDiet(member.getId(), DietPlanStatus.ACTIVE)
-		.ifPresent(plan -> {
-			plan.setStatusOfDiet(DietPlanStatus.INACTIVE);
-			plan.setUpdatedAt(LocalDateTime.now());
-			dietPlanRepository.save(plan);
-		});
+		// Inactivate existing active plan
+        dietPlanRepository
+                .findByMemberIdAndStatusOfDiet(member.getId(), DietPlanStatus.ACTIVE)
+                .ifPresent(plan -> {
+                    plan.setStatusOfDiet(DietPlanStatus.INACTIVE);
+                    plan.setUpdatedAt(LocalDateTime.now());
+                    dietPlanRepository.save(plan);
+                });
 
-		DietPlan newPlan = mapper.toEntity(request, member, trainer);
+        DietPlan newPlan = new DietPlan();
+        newPlan.setMember(member);
+        newPlan.setTrainer(trainer);
+        newPlan.setDescriptionOfDiet(request.getDescriptionOfDiet());
+        newPlan.setPreferencesInDiet(request.getPreferencesInDiet());
+        newPlan.setStatusOfDiet(DietPlanStatus.ACTIVE);
+        newPlan.setCreatedAt(LocalDateTime.now());
+        newPlan.setUpdatedAt(LocalDateTime.now());
 		DietPlan saved = dietPlanRepository.save(newPlan);
 
 		return mapper.toResponse(saved);
 	}
 
-	// TRAINER → Update content
 	public DietPlanResponse updateDietPlanContent(UpdateDietPlanRequest request) {
 
 		DietPlan plan = dietPlanRepository.findById(request.getId())
@@ -82,7 +89,6 @@ public class DietPlanService {
 		return mapper.toResponse(dietPlanRepository.save(plan));
 	}
 
-	// MEMBER → View active plan
 	public DietPlanResponse getActiveDietPlanForCustomer(Long memberId) {
 
 		DietPlan plan = dietPlanRepository.findByMemberIdAndStatusOfDiet(memberId, DietPlanStatus.ACTIVE)
@@ -91,7 +97,6 @@ public class DietPlanService {
 		return mapper.toResponse(plan);
 	}
 
-	// TRAINER → View history
 	public List<DietPlanResponse> getDietPlansByTrainer(Long trainerId) {
 
 		List<DietPlan> plans = dietPlanRepository.findByTrainerId(trainerId);

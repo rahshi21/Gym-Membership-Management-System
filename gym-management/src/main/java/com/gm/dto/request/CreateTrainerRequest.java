@@ -32,7 +32,6 @@ public class CreateTrainerRequest {
 	@PositiveOrZero(message = "Experience must be valid")
 	private Integer experience;
 
-	@NotBlank(message = "Expertise is mandatory")
 	private Goal expertise;
 
 	@NotBlank(message = "Availability is mandatory")

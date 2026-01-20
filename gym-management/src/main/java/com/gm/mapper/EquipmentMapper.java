@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
 import com.gm.dto.request.CreateEquipmentRequest;
+import com.gm.dto.response.EquipmentResponse;
 import com.gm.entity.Equipment;
 import com.gm.enums.EquipmentStatus;
 
@@ -22,4 +23,13 @@ public class EquipmentMapper {
 
         return equipment;
     }
+
+	public EquipmentResponse toResponse(Equipment equipment) {
+		EquipmentResponse response = new EquipmentResponse();
+		response.setId(equipment.getId());
+		response.setEquipmentName(equipment.getEquipmentName());
+		response.setTotalQuantity(equipment.getTotalQuantity());
+		response.setAvailableQuantity(equipment.getAvailableQuantity());
+		return response;
+	}
 }

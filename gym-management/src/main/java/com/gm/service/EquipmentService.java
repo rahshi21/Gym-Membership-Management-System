@@ -1,6 +1,7 @@
 package com.gm.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.gm.dto.request.AddEquipmentStockRequest;
 import com.gm.dto.request.CreateEquipmentRequest;
 import com.gm.dto.request.UpdateEquipmentStatusRequest;
+import com.gm.dto.response.EquipmentResponse;
 import com.gm.entity.Equipment;
+import com.gm.enums.EquipmentStatus;
 import com.gm.exception.EquipmentNotFoundException;
 import com.gm.mapper.EquipmentMapper;
 import com.gm.repository.EquipmentRepository;
@@ -66,6 +69,25 @@ public class EquipmentService {
         equipmentRepository.save(equipment);
 
         return ResponseEntity.ok("Equipment status updated successfully");
+    }
+    
+    public List<EquipmentResponse> findByStatus(EquipmentStatus status) {
+
+        List<Equipment> equipmentList = equipmentRepository.findByStatus(status);
+        
+        if(equipmentList.isEmpty())	{
+        	throw new EquipmentNotFoundException(
+        			"No equipment found with status : " + status
+        			);
+        }
+
+        List<EquipmentResponse> responseList = new ArrayList<>();
+        
+        for(Equipment equipment : equipmentList) {
+        	responseList.add(mapper.toResponse(equipment));
+        }
+        
+        return responseList;
     }
 
     public ResponseEntity<?> getAllEquipment() {

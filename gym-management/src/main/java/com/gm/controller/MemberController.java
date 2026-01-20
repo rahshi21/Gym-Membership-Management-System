@@ -102,7 +102,7 @@ public class MemberController {
 		return bookingService.bookEquipment(request);
 	}
 
-	@GetMapping("/equipment-bookings/{memberId}")
+	@GetMapping("/equipment-bookings/{id}")
 	public List<EquipmentBookingResponse> getMyBookings(@PathVariable Long id) {
 		return bookingService.getBookingsByMember(id);
 	}
@@ -122,7 +122,7 @@ public class MemberController {
 		return paymentService.makePayment(request);
 	}
 
-	@GetMapping("/payments/{memberId}")
+	@GetMapping("/payments/{id}")
 	public List<PaymentResponse> getMyPayments(@PathVariable Long id) {
 
 		return paymentService.getPaymentsByCustomer(id);
@@ -135,16 +135,16 @@ public class MemberController {
 		return ratingService.addRating(request);
 	}
 
-	@GetMapping("/ratings/{memberId}")
+	@GetMapping("/ratings/{id}")
 	public List<RatingResponse> getMyRatings(@PathVariable Long id) {
 		return ratingService.getRatingsByMember(id);
 	}
 
 	// DIET PLAN
 
-	@GetMapping("/diet-plan/{customerId}")
-	public DietPlanResponse getActiveDietPlan(@PathVariable Long memberId) {
-		return dietPlanService.getActiveDietPlanForCustomer(memberId);
+	@GetMapping("/diet-plan/{id}")
+	public DietPlanResponse getActiveDietPlan(@PathVariable Long id) {
+		return dietPlanService.getActiveDietPlanForCustomer(id);
 	}
 
 }
