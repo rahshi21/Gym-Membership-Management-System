@@ -11,7 +11,7 @@ import com.gm.entity.EquipmentBooking;
 @Repository
 public interface EquipmentBookingRepository extends JpaRepository<EquipmentBooking, Long> {
 
-	List<EquipmentBooking> findByCustomerId(Long customerId);
+	List<EquipmentBooking> findByMemberId(Long memberId);
 
 	List<EquipmentBooking> findByEquipmentId(Long equipmentId);
 

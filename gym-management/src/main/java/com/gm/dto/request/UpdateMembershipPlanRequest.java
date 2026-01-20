@@ -5,7 +5,6 @@ import com.gm.enums.MembershipPlanStatus;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 
 public class UpdateMembershipPlanRequest {
 	
@@ -27,10 +26,7 @@ public class UpdateMembershipPlanRequest {
 		super();
 	}
 
-	public UpdateMembershipPlanRequest(@Min(value = 1, message = "Membership Plan Id is required") Long id,
-			@NotNull(message = "Duration of membership is required") @Min(value = 1, message = "Duration of membership must be at least one month") Integer durationOfMembershipPlan,
-			@NotNull(message = "Price is mandatory") @PositiveOrZero(message = "price must be greater than or equal to zero") Double price,
-			@NotNull(message = "Membership Plan Status is required") MembershipPlanStatus active) {
+	public UpdateMembershipPlanRequest(Long id, Integer durationOfMembershipPlan, Double price, MembershipPlanStatus active) {
 		super();
 		this.id = id;
 		this.durationOfMembershipPlan = durationOfMembershipPlan;

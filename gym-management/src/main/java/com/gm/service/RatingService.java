@@ -64,8 +64,21 @@ public class RatingService{
 
 		return responses;
 	}
+	
+	public List<RatingResponse> getRatingsByMember(Long id) {
 
-	public List<RatingResponse> getRatingsByMember(Long memberId) {
+        List<Rating> ratings = ratingRepository.findByMemberId(id);
+        List<RatingResponse> responses = new ArrayList<>();
+
+        for (Rating rating : ratings) {
+            responses.add(mapper.toResponse(rating));
+        }
+
+        return responses;
+    }
+
+
+	public List<RatingResponse> getAllRatings(Long memberId) {
 
 		return ratingRepository.findAll()
 				.stream()

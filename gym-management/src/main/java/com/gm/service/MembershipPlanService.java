@@ -69,7 +69,7 @@ public class MembershipPlanService {
 
 	public List<MembershipPlanResponse> getActiveMemberships() {
 
-		List<MembershipPlan> activePlans = memberRepo.findByStatus(MembershipPlanStatus.ACTIVE);
+		List<MembershipPlan> activePlans = memberRepo.findByActive(MembershipPlanStatus.ACTIVE);
 		List<MembershipPlanResponse> responseList = new ArrayList<>();
 
 		for (MembershipPlan membership : activePlans) {

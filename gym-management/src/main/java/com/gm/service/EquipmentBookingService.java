@@ -72,7 +72,7 @@ public class EquipmentBookingService {
     public List<EquipmentBookingResponse> getBookingsByMember(Long id) {
 
         List<EquipmentBooking> bookings =
-                bookingRepo.findByCustomerId(id);
+                bookingRepo.findByMemberId(id);
 
         List<EquipmentBookingResponse> responses = new ArrayList<>();
 

@@ -50,7 +50,7 @@ public class DietPlanService {
 		Trainer trainer = trainerRepository.findById(request.getTrainer().getId())
 				.orElseThrow(() -> new TrainerNotFoundException("Trainer not found"));
 
-		dietPlanRepository.findByCustomerIdAndStatusOfDiet(member.getId(), DietPlanStatus.ACTIVE)
+		dietPlanRepository.findByMemberIdAndStatusOfDiet(member.getId(), DietPlanStatus.ACTIVE)
 		.ifPresent(plan -> {
 			plan.setStatusOfDiet(DietPlanStatus.INACTIVE);
 			plan.setUpdatedAt(LocalDateTime.now());
@@ -85,7 +85,7 @@ public class DietPlanService {
 	// MEMBER → View active plan
 	public DietPlanResponse getActiveDietPlanForCustomer(Long memberId) {
 
-		DietPlan plan = dietPlanRepository.findByCustomerIdAndStatusOfDiet(memberId, DietPlanStatus.ACTIVE)
+		DietPlan plan = dietPlanRepository.findByMemberIdAndStatusOfDiet(memberId, DietPlanStatus.ACTIVE)
 				.orElseThrow(() -> new DietPlanNotFoundException("No active diet plan"));
 
 		return mapper.toResponse(plan);

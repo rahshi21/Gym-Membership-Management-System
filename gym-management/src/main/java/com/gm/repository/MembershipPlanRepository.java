@@ -11,6 +11,6 @@ import com.gm.enums.MembershipPlanStatus;
 @Repository
 public interface MembershipPlanRepository extends JpaRepository<MembershipPlan, Long>{
 	
-	List<MembershipPlan> findByStatus(MembershipPlanStatus status);
+	List<MembershipPlan> findByActive(MembershipPlanStatus active);
 
 }

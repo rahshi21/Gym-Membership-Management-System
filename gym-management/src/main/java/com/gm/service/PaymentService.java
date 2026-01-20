@@ -94,9 +94,9 @@ public class PaymentService {
         return mapper.toResponse(saved);
     }
 
-    public List<PaymentResponse> getPaymentsByCustomer(Long customerId) {
+    public List<PaymentResponse> getPaymentsByCustomer(Long id) {
 
-        List<Payment> payments = paymentRepository.findByCustomerId(customerId);
+        List<Payment> payments = paymentRepository.findByMemberId(id);
         List<PaymentResponse> responses = new ArrayList<>();
 
         for (Payment payment : payments) {

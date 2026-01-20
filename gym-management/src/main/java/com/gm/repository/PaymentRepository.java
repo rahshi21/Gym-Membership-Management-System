@@ -10,6 +10,6 @@ import com.gm.entity.Payment;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-	List<Payment> findByCustomerId(Long customerId);
+	List<Payment> findByMemberId(Long memberId);
 
 }

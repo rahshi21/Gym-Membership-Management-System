@@ -12,9 +12,9 @@ import com.gm.enums.DietPlanStatus;
 @Repository
 public interface DietPlanRepository extends JpaRepository<DietPlan, Long> {
 
-	Optional<DietPlan> findByCustomerIdAndStatusOfDiet(Long customerId, DietPlanStatus status);
+	Optional<DietPlan> findByMemberIdAndStatusOfDiet(Long memberId, DietPlanStatus status);
 
-	List<DietPlan> findByCustomerId(Long customerId);
+	List<DietPlan> findByMemberId(Long memberId);
 
 	List<DietPlan> findByTrainerId(Long trainerId);
 
